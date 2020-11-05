@@ -1,0 +1,382 @@
+(a_list <- list(
+  c(1,1,2,5,14,42),
+  month.abb,
+  matrix(c(3,-8,1,-3),nrow = 2),
+  asin
+))
+
+names(a_list) <- c("catalan","months","involutary","arcsin")
+a_list
+(main_list <- list(
+  middle_list = list(
+    element_in_middle_list = diag(3),
+    inner_list = list(
+      element_in_inner_list = pi ^ (1:4),
+      another_element_in_inner_list = "a"
+    )
+  ),
+  element_in_main_list = log10(1:10)
+))
+
+is.atomic(list())
+is.recursive(list())
+is.atomic(numeric())
+is.recursive(numeric())
+
+length(a_list)
+length(main_list)
+
+dim(a_list)
+
+nrow(a_list)
+
+ncol(a_list)
+NROW(a_list)
+NCOL(a_list)
+
+l1 <- list(1:5)
+l2 <- list(6:10)
+l1[[1]]+l2[[1]]
+
+l <- list(
+  first = 1,
+  second = 2,
+  third = list(
+    alpha = 3.1,
+    beta = 3.2
+  )
+)
+
+l <- list(first = 1,srcond = 2,third = list(alpha=3.1,beta=3.2))
+l[1:2]
+l[-3]
+l[c(TRUE,TRUE,FALSE)]
+
+l[[1]]
+l[["first"]]
+is.list(1[1])
+is.list(1[[1]])
+
+l$first
+l$f 
+
+l[["third"]]["beta"]
+l[["third"]][["beta"]]
+l[[c("third","beta")]]
+is.list(l[["third"]]["beta"])
+is.list(l[["third"]][["beta"]])
+
+l[c(4,2,5)]
+l[c("fourth","second","fifth")]
+
+l[["fourth"]]
+l$fourth
+
+busy_beaver <- c(1,6,21,107)
+as.list(busy_beaver)
+
+as.numeric(list(1,6,21,107))
+
+(prime_factors <- list(
+  two = 2,
+  three = 3,
+  four = c(2,2),
+  five = 5,
+  six = c(2,3),
+  seven = 7,
+  eight = c(2,2,2),
+  nine = c(3,3),
+  ten = c(2,5)
+))
+
+new_factors <- unlist(prime_factors)
+new_factors
+new_factors[1]
+new_factors[[1]]
+is.list(prime_factors)
+is.list(new_factors)
+is.list(new_factors[1])
+is.list(new_factors[[1]])
+
+c(list(a=1,b=2),list(3))
+c(list(a=1,b=2),3)
+matrix_list_hybrid <- cbind(list(a=1,b=2),list(c=3,list(d=4)))
+matrix_list_hybrid
+str(matrix_list_hybrid)
+
+china_holiday <- list(
+  Jan = "New Year's Day",
+  Feb = "Spring Festival",
+  Mar = NULL,
+  Apr = "Qingming Festival",
+  May = "May Day",
+  Jun = "Dragon Boat Festival",
+  Jul = NULL,
+  Aug = NULL,
+  Sep = "Moon Festival",
+  Oct = "National Day",
+  Nov = NULL,
+  Dec = NULL
+)
+
+length(NULL)
+length(NA)
+is.null(NULL)
+is.null(NA)
+
+china_holiday$Sep <- NULL
+china_holiday
+china_holiday$Jun <- list(NULL)
+china_holiday
+
+(arguments_of_sd <- formals(sd))
+class(arguments_of_sd)
+pairlist()
+list()
+
+(a_data_frame <- data.frame(
+  x = letters[1:5],
+  y = rnorm(5),
+  z = runif(5)>0.5
+))
+class(a_data_frame)
+y <- rnorm(5)
+names(y) <- month.name[1:5]
+data.frame(
+  x = letters[1:5],
+  y = y,
+  z = runif(5)>0.5
+)
+data.frame(
+  x = letters[1:5],
+  y = y,
+  z = runif(5)>0.5,
+  row.names = NULL
+)
+data.frame(
+  x = letters[1:5],
+  y = y,
+  z = runif(5) > 0.5,
+  row.names = c("Jackie","Tito","Jermaine","Marlon","Michael")
+)
+rownames(a_data_frame)
+colnames(a_data_frame)
+dimnames(a_data_frame)
+nrow(a_data_frame)
+ncol(a_data_frame)
+dim(a_data_frame)
+
+length(a_data_frame)
+names(a_data_frame)
+
+data.frame(
+  x = 1,
+  y = 2:3,
+  z = 4:7
+)
+
+data.frame(
+  "A column" = letters[1:5],
+  "..." = rnorm(5),
+  "..." = runif(5) > 0.5,
+  check.names = TRUE
+)
+
+a_data_frame[2:3,-3]
+a_data_frame[c(FALSE,TRUE,TRUE,FALSE,FALSE),c("x","y")]
+
+a_data_frame[2:3,1]
+class(a_data_frame[2:3,-3])
+class(a_data_frame[2:3,1])
+
+a_data_frame$x[2:3]
+a_data_frame[[1]][2:3]
+a_data_frame[["x"]][2:3]
+
+subset(a_data_frame,y>0|z,x)
+
+t(a_data_frame)
+class(t(a_data_frame))
+
+another_data_frame <- data.frame(
+  z = rlnorm(5),
+  y = sample(5),
+  x = letters[3:7]
+)
+rbind(a_data_frame,another_data_frame)
+cbind(a_data_frame,another_data_frame)
+
+merge(a_data_frame,another_data_frame,by = "x")
+merge(a_data_frame,another_data_frame,by = "x",all = TRUE)
+
+
+
+
+
+#5-1
+x <- 0:99
+sqrt_x <- sqrt(x)
+is_square_number <- sqrt_x == floor(sqrt_x)
+square_numbers <- x[is_square_number]
+groups <- cut(
+  square_numbers,
+  seq.int(min(x),max(x),10),
+  include.lowest = TRUE,
+  right = FALSE)
+split(square_numbers,groups)
+
+#5-2
+new_data_frame <- iris
+new_data_frame
+mean(c(new_data_frame[1:150,1]))
+mean(c(new_data_frame[1:150,2]))
+mean(c(new_data_frame[1:150,3]))
+mean(c(new_data_frame[1:150,4]))
+
+#5-3
+x <- beaver1
+a <- data.frame(id=rep(1,each=114))
+new_beaver1 <- cbind(a,x)
+new_beaver1
+y <- beaver2
+b <- data.frame(id=rep(2,each=100))
+new_beaver2 <- cbind(y,b)
+new_beaver2
+
+new_beaver3 <- rbind(new_beaver1,new_beaver2)
+data.frame(new_beaver3,activ=1)
+
+
+#1
+an_environment <- new.env()
+an_environment
+#2
+an_environment[["pythag"]] <- c(12,15,20,21)
+an_environment$root <- polyroot(c(6,-5,1))
+assign(
+  "moonday",
+  weekdays(as.Date("1969/07/02")),
+  an_environment
+)
+an_environment[["pythag"]]
+an_environment$root
+get("moonday",an_environment)
+ls(envir = an_environment)
+ls.str(envir = an_environment)
+#exists()
+exists("pythag",an_environment)
+#
+(a_list <- as.list(an_environment))
+as.environment(a_list)
+list2env(a_list)
+#
+nested_environment <- new.env(parent = an_environment)
+exists("pythag",nested_environment)
+#
+non_stormers <<- c(3,7,8,13,17,18,21)
+get("non_stormers",envir = globalenv())
+head(ls(envir = baseenv()),20)
+#
+hypotenuse <- function(x,y){
+  sqrt(x^2+y^2)
+}
+hypotenuse(3,4)
+hypotenuse(x=24,y=7)
+hypotenuse <- function(x=5,y=12){
+  sqrt(x^2+y^2)
+}
+hypotenuse()
+#
+formals(hypotenuse)
+args(hypotenuse)
+formalArgs(hypotenuse)
+(body_of_hypoternuse <- body(hypotenuse))
+deparse(body_of_hypoternuse)
+#
+normalize <- function(x,m=mean(x),s=sd(x)){
+  (x-m)/s
+}
+normalized <- normalize(c(1,3,6,10,15))
+mean(normalized)
+sd(normalized)
+#
+normalize(c(1,3,6,10,NA))
+#
+normalize <- function(x,m=mean(x,na.rm = na.rm),s=sd(x,na.rm=na.rm),na.rm = FALSE){
+  (x-m)/s
+}
+normalize(c(1,3,6,10,NA))
+normalize(c(1,3,6,10,NA),na.rm = TRUE)
+#
+normalize <- function(x,m=mean(x,...),s=sd(x,...),...){
+  (x-m)/s
+}
+normalize(c(1,3,6,10,NA))
+normalize(c(1,3,6,10,NA),na.rm = TRUE)
+#
+do.call(hypotenuse,list(x=3,y=4))
+dfr1 <- data.frame(x = 1:5,y = rt(5,1))
+dfr2 <- data.frame(x = 6:10,y = rt(5,1,1))
+dfr3 <- data.frame(x = 11:15,y = rbeta(5,1,1))
+do.call(rbind,list(dfr1,dfr2,dfr3))
+menage <- c(1,0,0,1,2,13,80)
+mean(menage)
+mean(c(1,0,0,1,2,13,80))
+x_plus_y <- function(x,y)x+y
+do.call(x_plus_y,list(1:5,5:1))
+do.call(function(x,y)x+y,list(1:5,5:1))
+#
+emp_cun_dist_fn <- ecdf(rnorm(50))
+is.function(emp_cun_dist_fn)
+#
+f <- function(x9){
+  y9 <- 1
+  g <- function(y9){
+    (x9+y9)/2
+  }
+  g(x9)
+}
+f(sqrt(5))
+h <- function(x10){
+  x10*y10
+}
+y10 <- 19
+h(9)
+y11 <- 19
+h2 <- function(x11){
+  if(runif(1)>0.5)y11 <- 12
+  x11*y11
+}
+replicate(10,h2(9))
+
+
+
+#6-1
+an_environment <- new.env()
+an_environment
+an_environment[["two_pi"]] <- 2*pi
+an_environment$three_pi<- 3*pi
+assign(
+  "four_pi",
+  4*pi,
+  an_environment
+)
+ls(envir = an_environment)
+ls.str(envir = an_environment)
+#6-2
+judge <- function(x){
+  ifelse(x%%2 == 0,T,F)
+}
+judge(2)
+judge(3)
+judge(NA)
+#6-3
+a <- function(x = 1,y = 1){
+  x + y
+}
+f <- function(x){
+  list1 <- list('args' = pairlist(x),'body' = x)
+  list1
+}
+f(a(2,3))
+f(a(3,4))
